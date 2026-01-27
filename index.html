@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRUCTIA – Nettoyage Automobile</title>
+
+<style>
+/* RESET & FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #f0f4f8;
+    color: #0f172a;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: white;
+    padding: 12px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 800;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.logo-text span {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.logo-text small {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #94a3b8;
+}
+
+nav a {
+    color: #e2e8f0;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+nav a:hover { color: #3b82f6; }
+
+/* HERO */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-images {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-img {
+    width: 50%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85));
+}
+
+.hero-img.left { background-image: url("https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2"); }
+.hero-img.right { background-image: url("https://images.unsplash.com/photo-1608219959300-2b53c2a9ef2f"); }
+
+.hero-content {
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(40px, 8vw, 85px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* SECTION BOXES */
+section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 100px 40px;
+}
+
+.section-box {
+    background: white;
+    padding: 60px;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-box.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: #1e40af;
+}
+
+/* SERVICES */
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service {
+    background: #f8fafc;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #e2e8f0;
+    transition: 0.3s;
+}
+
+.service:hover {
+    transform: translateY(-10px);
+    border-color: #3b82f6;
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.15);
+}
+
+/* GOOGLE FORM CONTAINER */
+.google-form-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Adjust this percentage to control height */
+    overflow: hidden;
+    border-radius: 12px;
+    margin-top: 30px;
+}
+
+.google-form-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* FOOTER */
+footer {
+    background: #0f172a;
+    color: #94a3b8;
+    text-align: center;
+    padding: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header { padding: 12px 25px; }
+    nav { display: none; }
+    .hero-images { flex-direction: column; }
+    .hero-img { width: 100%; height: 50%; }
+    .section-box { padding: 35px 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">S</div>
+        <div class="logo-text">
+            <span>STRUCTIA</span>
+            <small>Nettoyage Automobile</small>
+        </div>
+    </div>
+    <nav>
+        <a href="#apropos">À propos</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<div class="hero">
+    <div class="hero-images">
+        <div class="hero-img left"></div>
+        <div class="hero-img right"></div>
+    </div>
+    <div class="hero-content">
+        <h1>STRUCTIA</h1>
+        <p>L'excellence du détail pour votre automobile au Maroc.</p>
+    </div>
+</div>
+
+<section id="apropos">
+    <div class="section-box">
+        <h2>À propos</h2>
+        <p style="font-size: 18px; color: #475569;">
+            STRUCTIA est une référence marocaine spécialisée dans le nettoyage de haute précision. 
+            Nous combinons techniques modernes et savoir-faire traditionnel pour redonner à votre véhicule son éclat d'origine.
+        </p>
+    </div>
+</section>
+
+<section id="services">
+    <div class="section-box">
+        <h2>Nos services</h2>
+        <div class="services">
+            <div class="service">🏎️<br>Nettoyage Extérieur</div>
+            <div class="service">🧽<br>Nettoyage Intérieur</div>
+            <div class="service">💎<br>Lavage Premium</div>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="section-box">
+        <h2>Contact & Réservation</h2>
+        <p>Utilisez le formulaire ci-dessous pour nous envoyer votre demande.</p>
+        
+        <div class="google-form-wrapper">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLScXXXXXXX/viewform?embedded=true" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Chargement…
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 – STRUCTIA. Tous droits réservés.
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section-box').forEach(box => {
+    observer.observe(box);
+});
+</script>
+
+</body>
+</html>
