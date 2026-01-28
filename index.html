@@ -163,9 +163,7 @@
       box-shadow: 0 16px 38px rgba(59,130,246,.25);
     }
     .btn-primary:hover{background: linear-gradient(135deg, rgba(59,130,246,1), rgba(96,165,250,.95));}
-    .btn-ghost{
-      background: rgba(255,255,255,.05);
-    }
+    .btn-ghost{background: rgba(255,255,255,.05);}
 
     .burger{
       width: 44px; height: 44px;
@@ -195,9 +193,9 @@
     .burger span::before{top:-6px;}
     .burger span::after{top:6px;}
 
-    /* Mobile menu */
+    /* Mobile menu (animated) */
     .mobile-menu{
-      display:none;
+      display:block;
       width: min(var(--max), 92%);
       margin: 0 auto;
       padding: 12px;
@@ -206,6 +204,19 @@
       border-radius: 20px;
       backdrop-filter: blur(16px);
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      transform-origin: top;
+      transform: scaleY(0.85);
+      opacity: 0;
+      pointer-events: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: .22s ease;
+    }
+    .mobile-menu.open{
+      transform: scaleY(1);
+      opacity: 1;
+      pointer-events: auto;
+      max-height: 320px;
     }
     .mobile-menu a{
       display:block;
@@ -225,7 +236,7 @@
       min-height: 720px;
       position:relative;
       overflow:hidden;
-      padding-top: 94px; /* header space */
+      padding-top: 94px;
     }
 
     .hero-slider,
@@ -256,6 +267,16 @@
         linear-gradient(180deg, rgba(2,6,23,.75) 0%, rgba(2,6,23,.55) 45%, rgba(2,6,23,.90) 100%),
         radial-gradient(700px 500px at 40% 35%, rgba(59,130,246,.25), transparent 55%),
         radial-gradient(800px 500px at 70% 40%, rgba(34,197,94,.18), transparent 60%);
+    }
+
+    /* Swiper bullets */
+    .swiper-pagination-bullets{bottom: 24px !important;}
+    .swiper-pagination-bullet{
+      background: rgba(255,255,255,.55);
+      opacity: 1;
+    }
+    .swiper-pagination-bullet-active{
+      background: #fff;
     }
 
     .hero-content{
@@ -540,6 +561,7 @@
       <div class="swiper-slide" style="background-image:url('https://b.top4top.io/p_36792qjgw1.png')"></div>
       <div class="swiper-slide" style="background-image:url('https://j.top4top.io/p_367919bki1.png')"></div>
     </div>
+    <div class="swiper-pagination"></div>
   </div>
 
   <div class="hero-content container">
@@ -576,8 +598,7 @@
   <div class="container">
     <div class="section-head">
       <h2>À propos</h2>
-      
-      </p>
+      <p>
     </div>
 
     <div class="glass">
@@ -612,7 +633,7 @@
   <div class="container">
     <div class="section-head">
       <h2>Nos services</h2>
-      </p>
+      <p>
     </div>
 
     <div class="services-grid">
@@ -691,7 +712,7 @@
           <div class="icon">📦</div>
           <div>
             <h3>Service mobile avec déplacement</h3>
-            <p>Nettoyage auto sur site (tarifs négociables).</p>
+            <p>Nettoyage auto sur site.</p>
           </div>
         </div>
       </div>
@@ -763,7 +784,8 @@
     loop:true,
     effect:'fade',
     autoplay:{delay:3200,disableOnInteraction:false},
-    speed:800
+    speed:800,
+    pagination: { el: '.swiper-pagination', clickable: true }
   });
 
   // Header shrink on scroll
@@ -773,17 +795,17 @@
     else header.classList.remove("shrink");
   });
 
-  // Mobile menu
+  // Mobile menu (class toggle)
   const burgerBtn = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
+
   burgerBtn.addEventListener("click", () => {
-    const isOpen = mobileMenu.style.display === "block";
-    mobileMenu.style.display = isOpen ? "none" : "block";
+    mobileMenu.classList.toggle("open");
   });
 
   // Close mobile menu on link click
   document.querySelectorAll(".mLink").forEach(link=>{
-    link.addEventListener("click", ()=> mobileMenu.style.display = "none");
+    link.addEventListener("click", ()=> mobileMenu.classList.remove("open"));
   });
 </script>
 
