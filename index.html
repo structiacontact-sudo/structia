@@ -193,7 +193,7 @@
     .burger span::before{top:-6px;}
     .burger span::after{top:6px;}
 
-    /* Mobile menu */
+    /* Mobile menu (animated) */
     .mobile-menu{
       display:block;
       width: min(var(--max), 92%);
@@ -216,7 +216,7 @@
       transform: scaleY(1);
       opacity: 1;
       pointer-events: auto;
-      max-height: 420px;
+      max-height: 320px;
     }
     .mobile-menu a{
       display:block;
@@ -455,156 +455,6 @@
       margin-top: 6px;
     }
 
-    /* =============== GALLERY =============== */
-    .gallery-grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    .g-item{
-      position:relative;
-      overflow:hidden;
-      border-radius: var(--radius2);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 18px 50px rgba(0,0,0,.28);
-      cursor:pointer;
-      min-height: 210px;
-    }
-
-    .g-item img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      transform: scale(1.05);
-      transition: transform .35s ease, filter .35s ease;
-      filter: saturate(1.1) contrast(1.05);
-    }
-
-    .g-item::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(2,6,23,0) 0%, rgba(2,6,23,.65) 100%);
-      opacity:.9;
-    }
-
-    .g-caption{
-      position:absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 14px;
-      z-index: 2;
-      display:flex;
-      align-items:flex-end;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .g-caption b{
-      font-size: 14px;
-      letter-spacing: -0.2px;
-    }
-
-    .g-caption small{
-      display:block;
-      color: rgba(229,231,235,.78);
-      margin-top: 4px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .g-tag{
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 11px;
-      border: 1px solid rgba(59,130,246,.35);
-      background: rgba(59,130,246,.14);
-      white-space: nowrap;
-    }
-
-    .g-item:hover img{
-      transform: scale(1.12);
-      filter: saturate(1.2) contrast(1.1);
-    }
-
-    .g-6{grid-column: span 6;}
-    .g-4{grid-column: span 4;}
-    .g-8{grid-column: span 8;}
-
-    /* Lightbox */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      background: rgba(2,6,23,.75);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 22px;
-      z-index: 99999;
-      opacity:0;
-      pointer-events:none;
-      transition: .2s ease;
-      backdrop-filter: blur(10px);
-    }
-    .lightbox.open{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .lightbox-inner{
-      width: min(980px, 96vw);
-      border-radius: var(--radius2);
-      overflow:hidden;
-      border: 1px solid var(--border);
-      background: rgba(15,23,42,.85);
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
-      position:relative;
-    }
-
-    .lightbox-inner img{
-      width:100%;
-      max-height: 78vh;
-      object-fit: cover;
-      display:block;
-    }
-
-    .lightbox-bar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 12px 14px;
-      border-top: 1px solid var(--border);
-    }
-
-    .lb-title{
-      font-weight: 900;
-      font-size: 13px;
-      color: rgba(229,231,235,.92);
-    }
-    .lb-hint{
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 800;
-    }
-
-    .lb-close{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      font-weight: 900;
-      cursor:pointer;
-    }
-    .lb-close:hover{background: rgba(255,255,255,.10);}
-
     /* Contact */
     .contact-grid{
       display:grid;
@@ -655,9 +505,6 @@
       .burger{display:flex;}
       .brand-text small{max-width: 240px;}
       .header-actions .btn-ghost{display:none;}
-
-      .g-6,.g-8{grid-column: span 12;}
-      .g-4{grid-column: span 6;}
     }
     @media (max-width: 520px){
       .header-inner{padding: 11px;}
@@ -666,9 +513,6 @@
       .btn{padding: 10px 12px;}
       section{padding: 75px 0;}
       .section-head{flex-direction: column; align-items:flex-start;}
-
-      .g-4{grid-column: span 12;}
-      .g-item{min-height: 190px;}
     }
   </style>
 </head>
@@ -690,7 +534,6 @@
     <nav class="nav">
       <a href="#apropos">À propos</a>
       <a href="#services">Services</a>
-      <a href="#gallery">Galerie</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -706,7 +549,6 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#apropos" class="mLink">À propos</a>
     <a href="#services" class="mLink">Services</a>
-    <a href="#gallery" class="mLink">Galerie</a>
     <a href="#contact" class="mLink">Contact</a>
   </div>
 </header>
@@ -885,96 +727,16 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="container">
-    <div class="section-head">
-      <h2>Galerie</h2>
-      <p>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="g-item g-8" data-title="Avant / Après – Nettoyage intérieur" data-img="https://g.top4top.io/p_3679w1t3s1.png">
-        <img src="https://g.top4top.io/p_3679w1t3s1.png" alt="Gallery 1">
-        <div class="g-caption">
-          <div>
-            <b>Avant / Après – Intérieur</b>
-            <small>Résultat visible, finition premium.</small>
-          </div>
-          <div class="g-tag">DETAILING</div>
-        </div>
-      </div>
-
-      <div class="g-item g-4" data-title="Lavage extérieur premium" data-img="https://raw.githubusercontent.com/structiacontact-sudo/media/refs/heads/main/8f0989f7-b35c-40a2-9744-6af466b23181.png">
-        <img src="https://raw.githubusercontent.com/structiacontact-sudo/media/refs/heads/main/8f0989f7-b35c-40a2-9744-6af466b23181.png" alt="Gallery 2">
-        <div class="g-caption">
-          <div>
-            <b>Lavage extérieur</b>
-            <small>Brillance & protection.</small>
-          </div>
-          <div class="g-tag">AUTO</div>
-        </div>
-      </div>
-
-     <div class="g-item g-4" data-title="Désinfection & hygiène" data-img="https://j.top4top.io/p_367919bki1.png">
-        <img src="https://j.top4top.io/p_367919bki1.png" alt="Gallery 4">
-        <div class="g-caption">
-          <div>
-            <b>Désinfection</b>
-            <small>Produits adaptés & sécurité.</small>
-          </div>
-          <div class="g-tag">HYGIÈNE</div>
-        </div>
-      </div>
-
-      <div class="g-item g-6" data-title="Nettoyage résidentiel" data-img="https://a.top4top.io/p_3679nq5od1.png">
-        <img src="https://a.top4top.io/p_3679nq5od1.png" alt="Gallery 5">
-        <div class="g-caption">
-          <div>
-            <b>Résidentiel</b>
-            <small>Maison & appartement.</small>
-          </div>
-          <div class="g-tag">HOME</div>
-        </div>
-      </div>
-
-      <div class="g-item g-6" data-title="Service mobile" data-img="https://raw.githubusercontent.com/structiacontact-sudo/media/refs/heads/main/6fa96991-73c8-41fc-8b1f-2deb80e68744.png">
-        <img src="https://raw.githubusercontent.com/structiacontact-sudo/media/refs/heads/main/6fa96991-73c8-41fc-8b1f-2deb80e68744.png" alt="Gallery 6">
-        <div class="g-caption">
-          <div>
-            <b>Service mobile</b>
-            <small>On se déplace jusqu’à vous.</small>
-          </div>
-          <div class="g-tag">MOBILE</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-inner">
-    <img id="lbImg" src="" alt="Preview">
-    <div class="lightbox-bar">
-      <div>
-        <div class="lb-title" id="lbTitle">Image</div>
-        <div class="lb-hint">Cliquez Esc pour fermer</div>
-      </div>
-      <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
-    </div>
-  </div>
-</div>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <div class="section-head">
       <h2>Contact</h2>
-      <p>Appelez, envoyez un email, ou demandez un devis rapidement.</p>
+      </p>
     </div>
 
     <div class="contact-grid">
@@ -1004,6 +766,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1032,7 +795,7 @@
     else header.classList.remove("shrink");
   });
 
-  // Mobile menu
+  // Mobile menu (class toggle)
   const burgerBtn = document.getElementById("burgerBtn");
   const mobileMenu = document.getElementById("mobileMenu");
 
@@ -1044,39 +807,7 @@
   document.querySelectorAll(".mLink").forEach(link=>{
     link.addEventListener("click", ()=> mobileMenu.classList.remove("open"));
   });
-
-  // Gallery lightbox
-  const lightbox = document.getElementById("lightbox");
-  const lbImg = document.getElementById("lbImg");
-  const lbTitle = document.getElementById("lbTitle");
-  const lbClose = document.getElementById("lbClose");
-
-  document.querySelectorAll(".g-item").forEach(item=>{
-    item.addEventListener("click", ()=>{
-      const img = item.getAttribute("data-img");
-      const title = item.getAttribute("data-title") || "Image";
-      lbImg.src = img;
-      lbTitle.textContent = title;
-      lightbox.classList.add("open");
-    });
-  });
-
-  function closeLb(){
-    lightbox.classList.remove("open");
-    lbImg.src = "";
-  }
-
-  lbClose.addEventListener("click", closeLb);
-  lightbox.addEventListener("click", (e)=>{
-    if(e.target === lightbox) closeLb();
-  });
-  window.addEventListener("keydown", (e)=>{
-    if(e.key === "Escape") closeLb();
-  });
 </script>
 
 </body>
 </html>
-
-
-
